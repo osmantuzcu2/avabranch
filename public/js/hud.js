@@ -21,7 +21,7 @@ function HUD(game, pre) {
 		this.score += Math.ceil(1 * this.multiplier * timeDelta / 100)
 	}
 	this.draw = function(ctx) {
-		ctx.fillStyle = "#222"
+		ctx.fillStyle = "#EDDB67"
 		ctx.font = "20px sans-serif"
 		ctx.fillText("Score: " + this.score, 10, 24)
 		ctx.fillText("Multiplier: " + this.multiplier, 10, 48)
@@ -34,7 +34,7 @@ function HUD(game, pre) {
 				h : 400
 			}
 			ctx.fillRect(canvas.width / 2 - b.w / 2, canvas.height / 2 - b.h / 2, b.w, b.h)
-			ctx.fillStyle = "#FFF"
+			ctx.fillStyle = "#000"
 			var fontSize = 30
 			ctx.font = fontSize + "px bold sans-serif"
 			var x = Math.floor(canvas.width / 2 - 150)
@@ -61,6 +61,7 @@ function HUD(game, pre) {
 			var best = localStorage.bestScore || 0
 			if (this.score > best) {
 				localStorage.bestScore = this.score
+				console.log("Backende score gönderilecek")
 				best = this.score
 			}
 
@@ -82,13 +83,13 @@ function HUD(game, pre) {
 			ctx.fillText("[p] to resume", x, y + 80)
 		} else if (this.game.objects['player']) {
 			var player = this.game.objects['player']
-			var sX = 10
+			var sX = 20
 			var sY = this.game.canvas.height - 50
-			ctx.fillText("controls ", sX, sY)
-			sY += 10
+			//ctx.fillText("controls ", sX, sY)
+			//sY += 10
 			//need list of lines of diff controls, same controls are in list w/color
 			var keys = {}
-			for (var i = 0; i < player.lines.length; i++) {
+			/* for (var i = 0; i < player.lines.length; i++) {
 				var line = player.lines[i]
 				if (line.isDead)
 					continue
@@ -101,7 +102,7 @@ function HUD(game, pre) {
 						colors : [line.color]
 					}
 				}
-			}
+			} */
 
 			var keyAccess = Object.keys(keys)
 			for (var i = 0; i < keyAccess.length; i++) {
